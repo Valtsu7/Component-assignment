@@ -1,9 +1,14 @@
+import React, { useState, useEffect } from 'react';
 
-import React, { useState } from 'react';
+const ProductForm = ({ products, prices, onOrder, currentOrder }) => {
+  const [selectedProductIndex, setSelectedProductIndex] = useState(products.indexOf(currentOrder.product));
+  const [quantity, setQuantity] = useState(currentOrder.quantity);
 
-const ProductForm = ({ products, prices, onOrder }) => {
-  const [selectedProductIndex, setSelectedProductIndex] = useState(0);
-  const [quantity, setQuantity] = useState(1);
+  useEffect(() => {
+    // Päivitä tilan arvot, kun currentOrder muuttuu
+    setSelectedProductIndex(products.indexOf(currentOrder.product));
+    setQuantity(currentOrder.quantity);
+  }, [currentOrder, products]);
 
   const handleProductChange = (e) => {
     setSelectedProductIndex(e.target.value);
@@ -32,7 +37,7 @@ const ProductForm = ({ products, prices, onOrder }) => {
         <span>{quantity}</span>
         <button onClick={incrementQuantity}>+</button>
       </div>
-      <button onClick={handleOrder}>Place Order</button>
+      <button onClick={handleOrder}>Update Order</button>
     </div>
   );
 };
