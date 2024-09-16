@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="Welcome to the Product Page" />
+      <Header  />
       <ProductForm 
         products={products} 
         prices={prices} 
